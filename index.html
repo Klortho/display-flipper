@@ -8,6 +8,7 @@
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
          xmlns:xlink="http://www.w3.org/1999/xlink"
          width='600' height='600'>
+      <rect x='0' y='0' width='600' height='600' fill='grey' />
       <defs>
         <clipPath id="show-top">
           <rect x="0" y="-100" width="100" height="100" />
@@ -20,12 +21,15 @@
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js'></script>
     <script src='https://d3js.org/d3-selection-multi.v1.min.js'></script>
-    <script src='main.js'></script>
+    <script src='js.js'></script>
     <script>
       var d = new Display({
         color: 'blue',
-        duration: 100,
-      });
+        duration: 300,
+      }, 50, 100);
+      d3.select('svg').append('text').text('BLAP!').attrs({
+        x: 300, y: 200, fill: 'brown', stroke: 'none'
+      })
     </script>
   </body>
 </html>

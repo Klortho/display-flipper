@@ -5,16 +5,10 @@ const Display = (function() {
       this.opts = opts;
       this.value = 0;
       const g = this.g = drawing.append('g')
-        .attr('transform', 'translate(' + x + ', ' + y + ')');
+        .attr('transform', 'translate(' + x + ', ' + (y + this.opts.height / 2) + ')');
       this.panels = [
-        ['top', 1], ['top', 1], ['bottom', 1], ['bottom', 0]
+        ['top', 1], ['top', 1], ['bottom', 1], ['bottom', 0],
       ].map(specs => this.initialize(g, ...specs));
-    /*
-      this.topUnder = initialize(g, 'top', 1);
-      this.topOver = initialize(g, 'top', 1);
-      this.bottomUnder = initialize(g, 'bottom', 1);
-      this.bottomOver = initialize(g, 'bottom', 0);
-    */
       g.append('path').attrs({
         stroke: 'white',
         'stroke-width': 1,
@@ -71,7 +65,7 @@ const Display = (function() {
 
   const svg = d3.select('svg');
   const drawing = svg.append('g')
-    .attr('transform', 'translate(0, 100)');
+    .attr('transform', 'translate(0, 0)');
 
   //const sec1 = new Digit(10, 10);
   //setInterval(() => sec1.incr(), 1000);
@@ -88,7 +82,7 @@ const Display = (function() {
     gaps: [3, 9],
   };
   class Display {
-    constructor(options, x=0, y=100) {
+    constructor(options, x=0, y=0) {
       const opts = Object.assign({}, defaults, options);
       const dNames = [
         'day1', 'day0', 'hour1', 'hour0', 'min1', 'min0', 'sec1', 'sec0',
@@ -96,12 +90,12 @@ const Display = (function() {
       ];
       dNames.reduce((acc, name) => {
         const [lastName, lastX] = acc;
-        const x = lastX + opts.width + opts.gaps[
+        const _x = lastX === null ? x : lastX + opts.width + opts.gaps[
           lastName.substr(0, 3) === name.substr(0, 3) ? 0 : 1
         ];
-        this[name] = new Digit(opts, x, y);
-        return [name, x];
-      }, ['', 0]);
+        this[name] = new Digit(opts, _x, y);
+        return [name, _x];
+      }, ['', null]);
     }
   }
   return Display;
