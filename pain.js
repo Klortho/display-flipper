@@ -57,12 +57,11 @@ const Display = (function() {
       stroke: 'none',
     });
     const text = g.append('text').attrs({
-      x: dWidth / 2, y: dHeight / 15,
+      x: dWidth / 2, y: dHeight / 4,
       fill: 'white',
       stroke: 'none',
       'font-size': (dHeight * 0.75) + 'px',
       'text-anchor': 'middle',
-      'alignment-baseline': 'middle',
       'font-family': 'helvetica',
     }).text('0');
     g.attr('clip-path', 'url(#show-' + topBottom + ')');
