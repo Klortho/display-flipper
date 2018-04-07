@@ -71,12 +71,10 @@ const Display = (function() {
   //setInterval(() => sec1.incr(), 1000);
   //sec1.incr();
 
-  const defScale = 0.5;
   const defaults = {
     duration: 150,
-    scale: defScale,
-    width: defScale * 75,
-    height: defScale * 150,
+    width: 37.5,
+    height: 75,
     color: '#222',
     millis: false,
     gaps: [3, 9],
