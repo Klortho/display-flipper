@@ -91,6 +91,5 @@ const display = (function() {
       this.day1 = new Digit(dScale * 0, 0);
     }
   }
-  const display = new Display();
-  return display;
+  return Display;
 })();
