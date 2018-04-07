@@ -1,4 +1,4 @@
-const display = (function() {
+const Display = (function() {
   const duration = 200;
   const dScale = 0.5;
   const dWidth = dScale * 75;
