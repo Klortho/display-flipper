@@ -27,7 +27,9 @@ const Display = (function() {
     }
 
     setValue(newValue) {
-      //const newValue = (this.value++) % 10;
+      if (newValue === this.value) return;
+      this.value = newValue;
+
       this.topUnder.text.text(newValue);
       this.bottomOver.text.text(newValue);
       this.topOver.g.transition().duration(duration)
@@ -72,22 +74,30 @@ const Display = (function() {
   //setInterval(() => sec1.incr(), 1000);
   //sec1.incr();
 
+  const defaults = {
+    color: '#222',
+    millis: false,
+  };
   class Display {
-    constructor(color='#222', millis=false) {
-      dColor = color;
-      if (millis) {
-        this.milli0 = new Digit(dScale * 816, 0);
-        this.milli1 = new Digit(dScale * 738, 0);
-        this.milli2 = new Digit(dScale * 660, 0);
-      }
-      this.sec0 = new Digit(dScale * 573, 0);
-      this.sec1 = new Digit(dScale * 495, 0);
-      this.min0 = new Digit(dScale * 408, 0);
-      this.min1 = new Digit(dScale * 330, 0);
-      this.hour0 = new Digit(dScale * 243, 0);
-      this.hour1 = new Digit(dScale * 165, 0);
-      this.day0 = new Digit(dScale * 78, 0);
-      this.day1 = new Digit(dScale * 0, 0);
+    constructor(options) {
+      const opts = Object.assign({}, defaults, options);
+      dColor = opts.color;
+      Object.assign(this,
+        { sec0: new Digit(dScale * 573, 0),
+          sec1: new Digit(dScale * 495, 0),
+          min0: new Digit(dScale * 408, 0),
+          min1: new Digit(dScale * 330, 0),
+          hour0: new Digit(dScale * 243, 0),
+          hour1: new Digit(dScale * 165, 0),
+          day0: new Digit(dScale * 78, 0),
+          day1: new Digit(dScale * 0, 0),
+        },
+        opts.millis ? {
+          milli0: new Digit(dScale * 816, 0),
+          milli1: new Digit(dScale * 738, 0),
+          milli2: new Digit(dScale * 660, 0),
+        } : {},
+      );
     }
   }
   return Display;
