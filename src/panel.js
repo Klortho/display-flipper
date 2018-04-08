@@ -1,4 +1,5 @@
 import defaults from './defaults';
+import {easeSinIn, easeSinOut} from 'd3';
 
 var count = 0;
 class Panel {
@@ -31,7 +32,7 @@ class Panel {
     Object.assign(this, {
       opts, g, clipId, clipper, rect,
       text: null,
-      easing: d3['easeSin' + (side === 'top' ? 'In' : 'Out')],
+      easing: side === 'top' ? easeSinIn : easeSinOut,
     });
   }
   setText(panelText) {

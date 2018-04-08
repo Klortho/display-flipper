@@ -1,10 +1,13 @@
 import defaults from './defaults';
 import Digit from './digit';
+import {select} from 'd3';
+import 'd3-selection-multi';
 
 const fam = dName => dName.substr(0, 1);
 
 class Flipper {
-  constructor(svg, digitNames, options=null, x=0, y=0) {
+  constructor(selector, digitNames, options=null, x=0, y=0) {
+    const svg = select(selector);
     const opts = Object.assign({}, defaults, options);
     const g = svg.append('g');
     const digits = [];

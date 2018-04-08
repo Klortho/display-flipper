@@ -4,7 +4,8 @@
   "description": "Fun flipper",
   "main": "src/flipper.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,8 @@
   },
   "homepage": "https://github.com/Klortho/display-flipper#readme",
   "dependencies": {
-    "d3": "^5.0.0"
+    "d3": "^5.0.0",
+    "d3-selection-multi": "^1.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

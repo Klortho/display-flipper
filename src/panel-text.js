@@ -1,4 +1,5 @@
 import defaults from './defaults';
+import {select} from 'd3';
 
 // The text string will be centered at the origin of the container's
 // coordinate system, and scaled and translated to fit inside a
@@ -50,7 +51,7 @@ class PanelText {
       prop => newPT[prop] = this[prop]);
     const gElem = this.g.node().cloneNode(true);
     parentG.node().appendChild(gElem);
-    newPT.g = d3.select(gElem);
+    newPT.g = select(gElem);
     return newPT;
   }
 }
