@@ -1,7 +1,7 @@
 const fam = dName => dName.substr(0, 1);
 
 export default {
-  duration: 250,
+  duration: 100,
   width: 20,
   height: 40,
   color: '#333',
