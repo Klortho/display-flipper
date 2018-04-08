@@ -1,32 +1,36 @@
 <html>
-  <head>
-    <style>
-    </style>
-  </head>
   <body>
-
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-         xmlns:xlink="http://www.w3.org/1999/xlink"
-         width='600' height='600'>
-      <rect x='0' y='0' width='600' height='600' fill='#DDD' />
-      <defs>
-        <clipPath id="show-top">
-          <rect x="0" y="-100" width="100" height="100" />
-        </clipPath>
-        <clipPath id="show-bottom">
-          <rect x="0" y="0" width="100" height="100" />
-        </clipPath>
-      </defs>
+    <svg version='1.1' xmlns='http://www.w3.org/2000/svg'
+         width='280' height='80'>
+      <rect x='0' y='0' width='280' height='80' fill='#DDD' />
     </svg>
-
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js'></script>
+    <script src='https://d3js.org/d3.v5.min.js'></script>
     <script src='https://d3js.org/d3-selection-multi.v1.min.js'></script>
-    <script src='jss.js'></script>
+    <script src='defaults.js'></script>
+    <script src='flipper.js'></script>
+    <script src='digit.js'></script>
+    <script src='panel.js'></script>
+    <script src='panel-text.js'></script>
     <script>
-      var d = new Display({
-        color: 'blue',
-        duration: 300,
-      }, 50, 100);
+      const debug = false;
+      const svg = d3.select('svg');
+
+      const digitNames = debug ? ['d1']
+        : ['d1', 'd0', 'h1', 'h0', 'm1', 'm0', 's1', 's0', 'ms2', 'ms1'];
+      const flip = new Flipper(svg, digitNames, {debug}, 20, 20);
+
+      function flipMessage(...chars) {
+        chars.reduce((s, char) =>
+          (s === null || s.i >= flip.digits.length) ? null
+            : { i: s.i + 1,
+                promise: s.promise.then(() =>
+                  flip.digits[s.i].setValue(char)) },
+          { i: 0,
+            promise: Promise.resolve() }
+        );
+      }
+
+      flipMessage('I', '❤️', ...('Nicolaus'.split('')));
     </script>
   </body>
 </html>
