@@ -1,0 +1,29 @@
+{
+  "name": "display-flipper",
+  "version": "0.0.1",
+  "description": "Fun flipper",
+  "main": "src/flipper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Klortho/display-flipper.git"
+  },
+  "author": "Chris Maloney",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/Klortho/display-flipper/issues"
+  },
+  "homepage": "https://github.com/Klortho/display-flipper#readme",
+  "dependencies": {
+    "d3": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "rollup": "^0.57.1",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-resolve": "^3.3.0"
+  }
+}
