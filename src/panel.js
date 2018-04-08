@@ -1,10 +1,8 @@
-import defaults from './defaults';
 import {easeSinIn, easeSinOut} from 'd3';
 
 var count = 0;
 class Panel {
-  constructor(parentG, side, options) {
-    const opts = Object.assign({}, defaults, options);
+  constructor(parentG, side, opts) {
     const left = -opts.width / 2;
     const top = -opts.height / 2;
     const clipId = 'clip-' + count++;

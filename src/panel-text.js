@@ -1,12 +1,17 @@
-import defaults from './defaults';
 import {select} from 'd3';
+
+function computeScale(rbb, tbb, padding) {
+  const rw = rbb.width - 2 * padding;
+  const rh = rbb.height - 2 * padding;
+  return (tbb.width <= rw & tbb.height <= rh) ? 1
+      : Math.min(rw / tbb.width, rh / tbb.height);
+}
 
 // The text string will be centered at the origin of the container's
 // coordinate system, and scaled and translated to fit inside a
 // rectangle specified by rbb (x, y, width, height).
 class PanelText {
-  constructor(parentG, options=null) {
-    const opts = Object.assign({}, defaults, options);
+  constructor(parentG, opts) {
     Object.assign(this, {parentG, opts});
   }
   setValue(value, rbb) {
@@ -31,12 +36,7 @@ class PanelText {
     const ty = rcy - tcy;
 
     // shrink to fit, if necessary
-    const rw = rbb.width - 2 * opts.padding;
-    const rh = rbb.height - 2 * opts.padding;
-    const scale =
-      (tbb.width <= rw & tbb.height <= rh) ? 1
-        : Math.min(rw / tbb.width, rh / tbb.height);
-
+    const scale = opts.shrinkToFit ? computeScale(rbb, tbb, opts.padding) : 1;
     g.attr('transform', 'scale(' + scale + ') ' +
       'translate(' + tx + ', ' + ty + ')');
 

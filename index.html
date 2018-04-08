@@ -4,15 +4,13 @@
          width='280' height='80'>
       <rect x='0' y='0' width='280' height='80' fill='#DDD' />
     </svg>
-    <!--script src='https://d3js.org/d3.v5.min.js'></script>
-    <script src='https://d3js.org/d3-selection-multi.v1.min.js'></script-->
     <script src='build/display-flipper.js'></script>
     <script>
-      const debug = false;
-
-      const digitNames = debug ? ['d1']
-        : ['d1', 'd0', 'h1', 'h0', 'm1', 'm0', 's1', 's0', 'ms2', 'ms1'];
-      const flip = new Flipper('svg', digitNames, {debug}, 20, 20);
+      const digitNames = [
+        'd1', 'd0', 'h1', 'h0', 'm1', 'm0', 's1', 's0', 'ms2', 'ms1',
+      ];
+      const opts = {};
+      const flip = new Flipper('svg', digitNames, opts, 20, 20);
 
       function flipMessage(...chars) {
         chars.reduce((s, char) =>

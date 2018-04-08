@@ -4,6 +4,7 @@
   "description": "Fun flipper",
   "main": "src/flipper.js",
   "scripts": {
+    "clean": "rm -rf build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c"
   },
